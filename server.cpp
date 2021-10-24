@@ -5,10 +5,10 @@
 #include <string>
 #include <map>
 #define MAX_BUFFER_SIZE 64
-//ρεπβεπ
+//Γ±Γ₯Γ°Γ’Γ₯Γ°
 int main()
 {
-    //ο1
+    //Γ―1
     std::string pipe_name;
     std::cout << "Enter  pipe name: ";
     std::cin >> pipe_name;
@@ -22,7 +22,7 @@ int main()
     {
         std::cout << "Error:"<< GetLastError()<<'\n';
     }
-//ο2,3
+//Γ―2,3
     std::string command (MAX_BUFFER_SIZE, '\0');
     std::string keyword,key,value,response {};
     DWORD bytes;
@@ -107,7 +107,7 @@ int main()
             command.resize(command.find('\0'));
             std::cout << command;
              command.replace(0, command.size(), command.size(), '\0');
-             command.resize(MAX_BUFFER_SIZE, '\0');
+             command.resize(command_size, '\0');
              response.clear();
              keyword.clear();
              key.clear();
@@ -115,7 +115,7 @@ int main()
     }
 
 
-// ο 5
+// Γ― 5
         char answer;
         bool exit = false;
         std::cout << "Do you want to destroy pipe \"" << pipe_name << "\" (y/n)?: ";
