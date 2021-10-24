@@ -49,8 +49,14 @@ int main()
                 auto err = GetLastError();
                 std::cout<<"Error:"<<err;
             }
+            auto fr = WriteFile(c_pipe, &command[0], command.size(), &bytes, nullptr);
+            if (!fr)
+            {
+                auto err = GetLastError();
+                std::cout<<"Error:"<<err;
+            }
             command.resize(command.find('\0'));
-
+            std::cout << command;
             std::istringstream parser {command};
             parser >> std::ws >> keyword;
             if (keyword == "set")
@@ -90,6 +96,11 @@ int main()
                 command.replace(0, command.size(), command.size(), '\0');
                 command.resize(MAX_BUFFER_SIZE, '\0');
                 break;
+            }
+            else
+            {
+                 std::cerr << "Incorrect command! (command: \"" << command << "\")\n";
+                response = "incorrect command";
             }
              WriteFile(c_pipe, response.c_str(), response.size(), &bytes, nullptr);
 
